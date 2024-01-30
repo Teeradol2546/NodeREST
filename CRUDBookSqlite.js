@@ -24,11 +24,13 @@ app.get('/books', (req, res) => {
         }
     });
 });
-//55555555
+
 app.get('/books/:id', (req, res) => {
-    db.get('SELECT * FROM books WHERE id = 7', req.params.id, (err, row) => {
-        
+    console.log("in select");
+    db.get('SELECT * FROM books WHERE id = ?', req.params.id, (err, row) => {
+
         if (err) {
+            console.log("Server");
             res.status(500).send(err);
         }
 
@@ -47,7 +49,7 @@ app.get('/books/:id', (req, res) => {
 
 app.post('/books', (req, res) => {
     const book = req.body;
-    db.run('INSERT INTO books (title, author) VALUES (?, ?)', book.title, book.author, function(err) {
+    db.run('INSERT INTO books (title, author) VALUES (?, ?)', book.title, book.author, function (err) {
         if (err) {
             res.status(500).send(err);
         }
@@ -61,7 +63,7 @@ app.post('/books', (req, res) => {
 
 app.put('/books/:id', (req, res) => {
     const book = req.body;
-    db.run('UPDATE books SET TITLE = ?, author = ?, WHERE id = ?', book.title, book.author, req.param.id, function(err) {
+    db.run('UPDATE books SET TITLE = ?, author = ?, WHERE id = ?', book.title, book.author, req.param.id, function (err) {
         if (err) {
             res.status(500).send(err);
         }
@@ -72,7 +74,7 @@ app.put('/books/:id', (req, res) => {
 });
 
 app.delete('/books/:id', (req, res) => {
-    db.run('DELETE FROM books WHERE id = ?', req.params.id, function(err) {
+    db.run('DELETE FROM books WHERE id = ?', req.params.id, function (err) {
         if (err) {
             res.status(500).send(err);
         }
