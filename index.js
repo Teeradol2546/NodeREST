@@ -4,7 +4,9 @@ const app = express();
 
 app.use(express.json());
 
-const dbUrl = 'postgres://webadmin:IYXafk24154@node56772-teeradolnoderest.proen.app.ruk-com.cloud:11753/Books'
+const dbUrl = 'postgres://webadmin:IYXafk24154@node56772-teeradolnoderest.proen.app.ruk-com.cloud/Books';
+
+
 
 const sequelize = new Sequelize (dbUrl);
 
